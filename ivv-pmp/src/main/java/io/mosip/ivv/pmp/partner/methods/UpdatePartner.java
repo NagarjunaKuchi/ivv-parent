@@ -46,6 +46,6 @@ public class UpdatePartner extends Step implements StepInterface{
 		String url = "/partners/" + partner.getId();
 
 		ApiCaller api_caller = new ApiCaller();
-		this.hasError = api_caller.callApi(step, url, api_input, "PUT", this.store);
+		this.hasError = api_caller.callApi_PartnerService(step, url, api_input, "PUT", this.store);
 	}
 }
