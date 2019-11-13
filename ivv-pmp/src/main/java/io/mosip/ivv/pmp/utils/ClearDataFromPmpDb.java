@@ -16,7 +16,7 @@ public abstract class ClearDataFromPmpDb {
 
 	public static void deleteData()
 			throws SQLException {
-		String sqlStatement = "delete from misp_license;delete from misp;";
+		String sqlStatement = "delete from misp_license;delete from misp;delete from partner_policy;delete from partner_policy_request;delete from partner;";
 		try {   Connection dbConnection = dbConnect();
 				Statement statement = dbConnection.createStatement();
 				 statement.executeUpdate(sqlStatement);
