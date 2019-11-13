@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import io.mosip.ivv.core.structures.Misp;
+import io.mosip.ivv.core.structures.Partner;
 import io.mosip.ivv.core.structures.Scenario;
 import io.mosip.ivv.dg.exceptions.MispNotFoundException;
 import io.mosip.ivv.parser.Parser;
@@ -16,6 +17,7 @@ public class PmpDataGenerator implements DataGeneratorInterface {
     private HashMap<String, String> globals = null;
     private HashMap<String, String> configs = null;
     private ArrayList<Misp> misps = null;
+    private ArrayList<Partner> partners = null;
     
     public PmpDataGenerator(String USER_DIR, String CONFIG_FILE) {
         this.user_dir = USER_DIR;
@@ -50,10 +52,12 @@ public class PmpDataGenerator implements DataGeneratorInterface {
         this.configs = parser.getConfigs();
         ArrayList<Scenario> scenarios = parser.getPmpScenarios();
         this.misps = parser.getMisps();
+        this.partners = parser.getPartners();
         this.generatedScenarios = new ArrayList<Scenario>();
         for (Scenario scenario : scenarios){
         	scenario.setPmpData(new Scenario.PmpData());
         	scenario.getPmpData().setMisp(addMispData(scenario,this.misps));
+        	scenario.getPmpData().setPartner(addPartnerData(scenario,this.partners));
         	this.generatedScenarios.add(scenario);
         }
 
@@ -69,7 +73,19 @@ public class PmpDataGenerator implements DataGeneratorInterface {
 			}
 		}
 		
-		throw new MispNotFoundException("misp not found");
+		return new Misp();
 	}
+	
+	private Partner addPartnerData(Scenario scenario, ArrayList<Partner> partners) {
+		for (Partner pa : partners) {
+			if (scenario.getSubModule() != null && !scenario.getSubModule().isEmpty()
+					&& scenario.getScenarioName() != null && !scenario.getScenarioName().isEmpty()
+					&& pa.getScenarioName() != null && pa.getScenarioName().equals(scenario.getScenarioName())
+					&& pa.getSubModule() != null && pa.getSubModule().equals(scenario.getSubModule())) {
+				return pa;
+			}
+		}
 
+		return new Partner();
+	}
 }

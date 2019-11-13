@@ -26,7 +26,7 @@ public class Scenario {
     public static class Step
     {
         public enum modules {
-            mi
+            mi,pa
         }
         
         private String name = ""; // needs to be passed
@@ -75,7 +75,8 @@ public class Scenario {
     {    	
     	private Misp misp;
     	private MispLicense mispLicense;	
-    	private Policy policy; 
+    	private Policy policy;
+    	private Partner partner;
     }
 
     private List<Step> steps = new ArrayList<Step>();

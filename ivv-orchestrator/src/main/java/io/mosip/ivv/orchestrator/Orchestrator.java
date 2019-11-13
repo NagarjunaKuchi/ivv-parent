@@ -44,6 +44,7 @@ public class Orchestrator {
 
 	{
         put("mi", "io.mosip.ivv.pmp.misp.methods");
+        put("pa", "io.mosip.ivv.pmp.partner.methods");
     }};
 
     @BeforeSuite
