@@ -21,6 +21,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
+
 public class ApiCaller extends Step {
 	
 	public ReadContext callGetApi_Partner(String api_url, JSONObject api_input){
@@ -140,6 +141,7 @@ public class ApiCaller extends Step {
         
 		return false;
 	}
+	
 	
 	public Boolean callApi_PartnerService(Scenario.Step step, String api_url, JSONObject api_input,
 			String httpMethod, Store store){

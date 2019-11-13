@@ -9,6 +9,7 @@ import io.mosip.ivv.core.structures.Partner;
 
 public class GetparticularAuthEKYCPartnerDetailsForGivenPartnerId extends Step implements StepInterface{
 		
+	
 	private Partner partner;
 	
 	@SuppressWarnings("unchecked")

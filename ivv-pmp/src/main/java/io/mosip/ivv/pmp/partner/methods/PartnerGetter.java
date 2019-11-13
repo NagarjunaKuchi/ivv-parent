@@ -12,6 +12,8 @@ import io.mosip.ivv.core.utils.Utils;
 
 public class PartnerGetter {
 	
+	
+	
 	@SuppressWarnings("unchecked")
 	public Partner getPartner(String name) {
 		

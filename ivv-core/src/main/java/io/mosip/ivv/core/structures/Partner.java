@@ -2,6 +2,7 @@ package io.mosip.ivv.core.structures;
 
 import lombok.Data;
 
+
 @Data
 public class Partner {
 	

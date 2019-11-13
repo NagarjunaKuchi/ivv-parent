@@ -10,6 +10,7 @@ import io.mosip.ivv.core.base.ApiCaller;
 
 public class PolicyIdGetter {
 		
+	
 		@SuppressWarnings("unchecked")
 		public String getPolicyId(String PolicyName) {
 	        

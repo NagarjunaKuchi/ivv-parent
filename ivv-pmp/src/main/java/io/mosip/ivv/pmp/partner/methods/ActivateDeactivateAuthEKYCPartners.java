@@ -8,6 +8,7 @@ import io.mosip.ivv.core.base.StepInterface;
 import io.mosip.ivv.core.structures.Partner;
 import io.mosip.ivv.core.utils.Utils;
 
+
 public class ActivateDeactivateAuthEKYCPartners extends Step implements StepInterface{
 	
 	private Partner partner;

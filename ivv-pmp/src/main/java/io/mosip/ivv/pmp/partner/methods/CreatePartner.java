@@ -1,5 +1,6 @@
 package io.mosip.ivv.pmp.partner.methods;
 
+
 import org.json.simple.JSONObject;
 
 import io.mosip.ivv.core.base.ApiCaller;
@@ -17,6 +18,7 @@ public class CreatePartner extends Step implements StepInterface {
 	@Override
 	public void run(Scenario.Step step) {
 
+		
 		this.partner = this.store.getScenarioPmpData().getPartner();
 
 		JSONObject request_json = new JSONObject();

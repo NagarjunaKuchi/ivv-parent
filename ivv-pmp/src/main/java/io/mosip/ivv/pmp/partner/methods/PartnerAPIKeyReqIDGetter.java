@@ -11,6 +11,7 @@ import io.mosip.ivv.core.utils.Utils;
 
 public class PartnerAPIKeyReqIDGetter {
 		
+	
 		@SuppressWarnings("unchecked")
 		public String getPartnerAPIKeyReqIDGetter(String PartnerId) {
 			JSONObject request_json = new JSONObject();				

@@ -10,6 +10,7 @@ import io.mosip.ivv.core.utils.Utils;
 
 public class ViewApiKeyRequestStatusAndApiKey extends Step implements StepInterface{
 	
+	
 	private Partner partner;
 	
 	@SuppressWarnings("unchecked")

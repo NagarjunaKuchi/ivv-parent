@@ -9,7 +9,9 @@ import io.mosip.ivv.core.structures.Partner;
 import io.mosip.ivv.core.utils.Utils;
 
 public class GetPartner extends Step implements StepInterface{
+	
 
+	
 	private Partner partner;
 	
 	@SuppressWarnings("unchecked")
