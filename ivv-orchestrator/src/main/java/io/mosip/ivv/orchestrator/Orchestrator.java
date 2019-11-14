@@ -48,15 +48,18 @@ public class Orchestrator {
 
     @BeforeSuite
     public void beforeSuite(){
-        this.properties = Utils.getProperties("config.properties");
-        this.configToSystemProperties();
-        Utils.setupLogger(System.getProperty("user.dir")+this.properties.getProperty("ivv.path.auditlog"));
-        /* setting exentreport */
-        htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir")+this.properties.getProperty("ivv.path.reports"));
-        extent = new ExtentReports();        
-        extent.attachReporter(htmlReporter);
+	try {
+	    	this.properties = Utils.getProperties("config.properties");
+	        this.configToSystemProperties();
+	        Utils.setupLogger(System.getProperty("user.dir")+this.properties.getProperty("ivv.path.auditlog"));
+	        /* setting exentreport */
+	        htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir")+this.properties.getProperty("ivv.path.reports"));
+	        extent = new ExtentReports();        
+	        extent.attachReporter(htmlReporter);
+	}catch(Exception ex){
+		Assert.fail();
+	}
     }
-
     @BeforeTest
     public static void  create_proxy_server() {
 
