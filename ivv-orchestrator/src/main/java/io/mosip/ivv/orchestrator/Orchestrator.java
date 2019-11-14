@@ -58,9 +58,9 @@ public class Orchestrator {
 	        htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir")+this.properties.getProperty("ivv.path.reports"));
 	        extent = new ExtentReports();        
 	        extent.attachReporter(htmlReporter);
-	}catch(Exception ex){
-		Assert.fail();
-	}
+		}catch(Exception ex){
+			Assert.fail();
+		}
     }
     @BeforeTest
     public static void  create_proxy_server() {
