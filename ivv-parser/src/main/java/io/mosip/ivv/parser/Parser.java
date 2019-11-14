@@ -13,11 +13,14 @@ import java.util.regex.Pattern;
 
 public class Parser implements ParserInterface {
 
+	
+	
     private String SCENARIO_SHEET = "";
     private String CONFIGS_SHEET = "";
     private String GLOBALS_SHEET = "";
     private String PMP_SCENARIO_SHEET = "";
     private String PMP_MISP_SHEET = "";
+    private String PMP_PARTNER_SHEET ="";
     
     Properties properties = null;
 
@@ -28,6 +31,7 @@ public class Parser implements ParserInterface {
         this.GLOBALS_SHEET = USER_DIR+properties.getProperty("ivv.sheet.globals");
         this.PMP_SCENARIO_SHEET = USER_DIR+properties.getProperty("ivv.pmp.sheet.scenario");
         this.PMP_MISP_SHEET = USER_DIR+properties.getProperty("ivv.pmp.sheet.misp");
+        this.PMP_PARTNER_SHEET = USER_DIR+properties.getProperty("ivv.pmp.sheet.partner");
     }
     public ArrayList<Scenario> getScenarios(){
         ArrayList<?> data = fetchScenarios();
@@ -206,5 +210,36 @@ public class Parser implements ParserInterface {
         }
         
 		return policy_list;
+	}
+	
+	public ArrayList<Partner> getPartners(){
+		ArrayList<?> data = fetchPartners();
+		ArrayList<Partner> partner_list = new ArrayList<Partner>();
+        ObjectMapper oMapper = new ObjectMapper();
+        Iterator<?> iter = data.iterator();
+        while (iter.hasNext()) {
+            Object obj = iter.next();
+            HashMap<String, String> data_map = oMapper.convertValue(obj, HashMap.class);
+            System.out.println("Parsing Partner: "+ data_map.get("ScenarioName"));
+            Partner partner = new Partner();
+            
+            partner.setSubModule(data_map.get("subModule"));
+            partner.setScenarioName(data_map.get("scenarioName"));
+            partner.setAddress(data_map.get("address"));
+            partner.setContactNo(data_map.get("contact_no"));
+            partner.setEmailId(data_map.get("email_id"));
+            partner.setName(data_map.get("name"));
+            partner.setIsActive(data_map.get("is_active"));
+            partner.setStatus(data_map.get("status"));
+            partner.setPolicyGroupName(data_map.get("policyGroupName"));
+            partner.setNewPolicyGroupName(data_map.get("newPolicyGroupName"));
+            
+            partner_list.add(partner);
+        }
+        
+		return partner_list;
+	}
+	private ArrayList<?> fetchPartners() {
+		return Utils.csvToList(PMP_PARTNER_SHEET);
 	}
 }
