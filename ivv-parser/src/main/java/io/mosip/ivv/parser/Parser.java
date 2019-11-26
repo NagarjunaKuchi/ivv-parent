@@ -167,7 +167,7 @@ public class Parser implements ParserInterface {
         while (iter.hasNext()) {
             Object obj = iter.next();
             HashMap<String, String> data_map = oMapper.convertValue(obj, HashMap.class);
-            System.out.println("Parsing Misp: "+ data_map.get("ScenarioName"));
+            System.out.println("Parsing Misp: "+ data_map.get("scenarioName"));
             Misp misp = new Misp();
             
             misp.setResult(data_map.get("result"));
@@ -221,7 +221,7 @@ public class Parser implements ParserInterface {
         while (iter.hasNext()) {
             Object obj = iter.next();
             HashMap<String, String> data_map = oMapper.convertValue(obj, HashMap.class);
-            System.out.println("Parsing Partner: "+ data_map.get("ScenarioName"));
+            System.out.println("Parsing Partner: "+ data_map.get("scenarioName"));
             Partner partner = new Partner();
             
             partner.setSubModule(data_map.get("subModule"));

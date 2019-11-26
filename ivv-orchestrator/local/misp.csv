@@ -6,5 +6,6 @@ ps_no,tag,result,subModule,scenarioName,old_name,name,address,contact_no,email_i
 5,,Success,MISP,MISP_S5,,Airtel,,,,,,,
 6,,Success,MISP,MISP_S6,,Airtel,,,,,,,
 7,,Success,MISP,MISP_S7,,Idea,,,,De-Active,,,
+9,,Success,MISP,MISP_S10,,Airtel,,,,Active,,,
 8,,Success,MISP,MISP_S8,,Airtel,,,,,,,Approved
-8,,Failure,MISP,MISP_S9,,Idea,,,,,,,Approved
+9,,Failure,MISP,MISP_S9,,Idea,,,,,,,Approved
