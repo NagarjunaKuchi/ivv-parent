@@ -340,7 +340,14 @@ public class ApiCaller extends Step {
 	private Boolean responseMatch(JSONObject api_input){
 		ReadContext ctx = JsonPath.parse(this.callRecord.getResponse().getBody().asString());
 		HashMap<String, String> app_request = api_input;
-		HashMap<String, String> app_response = ctx.read("$['response']");
+		HashMap<String, String> app_response = null;
+		
+		if(ctx.read("$['response']") instanceof ArrayList) {
+			app_response = ctx.read("$['response'][0]");
+		}else {
+			app_response = ctx.read("$['response']");
+		}
+		
 		Iterator requestIterator = app_request.entrySet().iterator();
 		Iterator responseIterator = app_response.entrySet().iterator();
 		
@@ -360,7 +367,7 @@ public class ApiCaller extends Step {
 		return true;
 	}
 	
-	@SuppressWarnings("unused")
+	/*@SuppressWarnings("unused")
 	private Boolean responseMatch(Partner partner){
 		ReadContext ctx = JsonPath.parse(this.callRecord.getResponse().getBody().asString());
 		
@@ -370,6 +377,6 @@ public class ApiCaller extends Step {
 			HashMap<String, String> app_info = ctx.read("$['response']");
 		}
 		return true;
-	}
+	}*/
 	
 }
