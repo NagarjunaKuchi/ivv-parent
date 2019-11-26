@@ -46,6 +46,8 @@ public class Orchestrator {
 	{
         put("mi", "io.mosip.ivv.pmp.misp.methods");
         put("pa", "io.mosip.ivv.pmp.partner.methods");
+        put("pol", "io.mosip.ivv.pmp.policy.methods");
+        put("pm", "io.mosip.ivv.pmp.partmanager.methods");
     }};
 
     @BeforeSuite
@@ -119,18 +121,44 @@ public class Orchestrator {
 
         for(Scenario.Step step: scenario.getSteps()){
             Utils.auditLog.info("----");
-            String identifier = "Step: "+step.getName()+", module: "+step.getModule()+", variant: "+step.getVariant();
+            String identifier = "Step: " + step.getName() + ", module: " + step.getModule() + ", variant: " + step.getVariant();
             Utils.auditLog.info(identifier);
-            try {
-                this.extentTest.info(identifier+" - running");
+            try {            	
+            	this.extentTest.info(identifier+" - running");
                 StepInterface st = getInstanceOf(step);
                 st.setExtentInstance(this.extentTest);
                 step.setE(this.extentTest);
+                if(step.getModule().toString().equals("mi")){
+                	step.setApi_url("http://localhost:8888");
+                }
+                
+                if(step.getModule().toString().equals("pol")){
+                	step.setApi_url("http://localhost:8989");
+                }
+                
+                if(step.getModule().toString().equals("pa")){
+                	step.setApi_url("http://localhost:1122");
+                }
+                
+                if(step.getModule().toString().equals("pm")){
+                	step.setApi_url("http://localhost:1133");
+                }
+                
                 st.setState(store);
-                st.run(step);
-                //step.g
+                st.run(step);                
                 store = st.getState();
-                if(st.hasError()){
+                boolean isTestFailure = st.hasError();
+                if(step.getModule().toString().equals("mi") && isTestFailure && store.getScenarioPmpData().getMisp().
+                		getResult().toLowerCase().equals("failure")){                	
+                	isTestFailure = false;
+                }else if(step.getModule().equals("pa") && isTestFailure && store.getScenarioPmpData().getPartner().
+            		getResult().toLowerCase().equals("failure")){
+                	isTestFailure = false;
+                }else if(step.getModule().equals("pol") && isTestFailure && store.getScenarioPmpData().getPolicy().
+                		getResult().toLowerCase().equals("failure")){
+                	isTestFailure = false;
+                }
+                if(isTestFailure){
                 	Assert.fail("");                	
                     this.extentTest.fail(identifier +" - failed");
                     if(System.getProperty("ivv.scenario.continueOnFailure") == null || System.getProperty("ivv.scenario.continueOnFailure").equals("N")){

@@ -27,4 +27,5 @@ public class Partner {
 	private String APIKeyReqID;
 	private String status;
 	private String PartnerAPIKey;
+	private String result;
 }

@@ -1,4 +1,4 @@
-package io.mosip.ivv.pmp.partner.methods;
+package io.mosip.ivv.pmp.partmanager.methods;
 
 import org.json.simple.JSONObject;
 
@@ -7,6 +7,9 @@ import io.mosip.ivv.core.base.Step;
 import io.mosip.ivv.core.base.StepInterface;
 import io.mosip.ivv.core.structures.Partner;
 import io.mosip.ivv.core.utils.Utils;
+import io.mosip.ivv.pmp.partner.methods.DownloadPartnerAPIKey;
+import io.mosip.ivv.pmp.partner.methods.PartnerAPIKeyReqIDGetter;
+import io.mosip.ivv.pmp.partner.methods.PartnerGetter;
 
 
 public class ActivateDeactivatePartnerAPIKeyGivenPartner extends Step implements StepInterface{
@@ -58,6 +61,6 @@ public class ActivateDeactivatePartnerAPIKeyGivenPartner extends Step implements
         
         String url = "/pmpartners/" + partner.getId() + "/" + partner.getPartnerAPIKey();
         ApiCaller api_caller = new ApiCaller();
-        this.hasError = api_caller.callApi_Manager(step, url, api_input, "PUT",this.store);
+        this.hasError = api_caller.callApi(step, url, api_input, "PUT",this.store);
 	}
 }

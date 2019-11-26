@@ -50,7 +50,7 @@ public class ViewApiKeyRequestStatusAndApiKey extends Step implements StepInterf
         
         String url = "/partners/" + partner.getId() + "/partnerAPIKeyRequests/" + partner.getAPIKeyReqID();
         ApiCaller api_caller = new ApiCaller();
-        this.hasError = api_caller.callApi_PartnerService(step, url, api_input, "GET",this.store);
+        this.hasError = api_caller.callApi(step, url, api_input, "GET",this.store);
 		
 	}
 }

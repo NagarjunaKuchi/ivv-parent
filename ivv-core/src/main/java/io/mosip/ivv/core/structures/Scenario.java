@@ -26,7 +26,7 @@ public class Scenario {
     public static class Step
     {
         public enum modules {
-            mi,pa
+            mi,pa,pol,pm
         }
         
         private String name = ""; // needs to be passed

@@ -32,6 +32,6 @@ private Partner partner;
         
         String url = "/partners/" + partner.getId() + "/partnerAPIKeyRequests";
         ApiCaller api_caller = new ApiCaller();
-        this.hasError = api_caller.callApi_PartnerService(step, url, request_json, "GET",this.store);
+        this.hasError = api_caller.callApi(step, url, request_json, "GET",this.store);
 	}
 }

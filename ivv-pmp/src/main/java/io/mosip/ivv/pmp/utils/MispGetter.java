@@ -29,20 +29,31 @@ public class MispGetter {
 
         Misp misp = new Misp();
         String is_misp_active;
-        String is_misp_license_active;
+        String is_misp_license_active ="";
         
-        if((boolean)ctx.read("$[0]['mispLicenses']['isActive']")){
+        if(ctx.read("$[0]['mispLicenses']") !=null){
+            misp.setLicenseKey_del_dtimes(ctx.read("$[0]['mispLicenses']['deletedDateTime']"));
+            misp.setLicenseKey_is_deleted(ctx.read("$[0]['mispLicenses']['isDeleted']"));
+            misp.setLicenseKey(ctx.read("$[0]['mispLicenses']['license_key']"));
+            
+	        if((boolean)ctx.read("$[0]['mispLicenses']['isActive']")){
+	        	is_misp_active = "Active";
+	        }else{
+	        	is_misp_active = "De-Active";
+	        }
+	        
+	        if((boolean)ctx.read("$[0]['mispLicenses']['isActive']")){
+	        	is_misp_license_active = "Active";
+	        }else{
+	        	is_misp_license_active = "De-Active";
+	        }
+        }
+        if((boolean)ctx.read("$[0]['isActive']")){
         	is_misp_active = "Active";
         }else{
         	is_misp_active = "De-Active";
         }
         
-        if((boolean)ctx.read("$[0]['mispLicenses']['isActive']")){
-        	is_misp_license_active = "Active";
-        }else{
-        	is_misp_license_active = "De-Active";
-        }
-
         misp.setId(ctx.read("$[0]['id']"));
         misp.setName(ctx.read("$[0]['name']"));
         misp.setAddress(ctx.read("$[0]['address']"));
@@ -52,10 +63,7 @@ public class MispGetter {
         misp.setDel_dtimes(ctx.read("$[0]['deletedDateTime']"));
         misp.setEmail_id(ctx.read("$[0]['emailId']"));
         misp.setIs_active(is_misp_active);
-        misp.setLicenseKey(ctx.read("$[0]['mispLicenses']['license_key']"));
-        misp.setLicenseKey_del_dtimes(ctx.read("$[0]['mispLicenses']['deletedDateTime']"));
         misp.setLicenseKey_is_active(is_misp_license_active);
-        misp.setLicenseKey_is_deleted(ctx.read("$[0]['mispLicenses']['isDeleted']"));
         
 		return misp;
 	}

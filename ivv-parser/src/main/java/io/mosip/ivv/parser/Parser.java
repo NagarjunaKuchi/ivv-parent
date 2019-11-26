@@ -26,7 +26,6 @@ public class Parser implements ParserInterface {
 
     public Parser(String USER_DIR, String CONFIG_FILE){
         properties = Utils.getProperties(CONFIG_FILE);
-        this.SCENARIO_SHEET = USER_DIR+properties.getProperty("ivv.sheet.scenario");
         this.CONFIGS_SHEET = USER_DIR+properties.getProperty("ivv.sheet.configs");
         this.GLOBALS_SHEET = USER_DIR+properties.getProperty("ivv.sheet.globals");
         this.PMP_SCENARIO_SHEET = USER_DIR+properties.getProperty("ivv.pmp.sheet.scenario");
@@ -171,6 +170,7 @@ public class Parser implements ParserInterface {
             System.out.println("Parsing Misp: "+ data_map.get("ScenarioName"));
             Misp misp = new Misp();
             
+            misp.setResult(data_map.get("result"));
             misp.setSubModule(data_map.get("subModule"));
             misp.setScenarioName(data_map.get("scenarioName"));
             misp.setAddress(data_map.get("address"));
@@ -180,6 +180,7 @@ public class Parser implements ParserInterface {
             misp.setIs_active(data_map.get("is_active"));
             misp.setOldName(data_map.get("old_name"));
             misp.setLicenseKey_is_active(data_map.get("license_key_status"));
+            misp.setStatus_code(data_map.get("status_code"));
             misp_list.add(misp);
         }
         

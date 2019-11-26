@@ -12,6 +12,7 @@ import org.json.simple.parser.ParseException;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -47,6 +48,7 @@ public class Utils {
     }
 
     public static void setupLogger(String path) {
+    	new File(path).mkdir();
         LogManager.getLogManager().reset();
         auditLog.setLevel(Level.ALL);
 

@@ -1,4 +1,4 @@
-package io.mosip.ivv.pmp.partner.methods;
+package io.mosip.ivv.pmp.partmanager.methods;
 
 import org.json.simple.JSONObject;
 
@@ -7,8 +7,8 @@ import io.mosip.ivv.core.base.Step;
 import io.mosip.ivv.core.base.StepInterface;
 import io.mosip.ivv.core.structures.Partner;
 
-
-public class GetAllPartnerAPIKeyRequestsByPartnerManager extends Step implements StepInterface{
+public class GetAllAuthEKYCPartnersForThePolicyGroup extends Step implements StepInterface{
+	
 	
 	private Partner partner;
 	
@@ -21,9 +21,8 @@ public class GetAllPartnerAPIKeyRequestsByPartnerManager extends Step implements
 		JSONObject request_json = new JSONObject();			
 		request_json.put("name", partner.getName());
         
-        String url = "/pmpartners" + "/PartnerAPIKeyRequests";
+        String url = "/pmpartners";
         ApiCaller api_caller = new ApiCaller();
-        this.hasError = api_caller.callApi_Manager(step, url, request_json, "GET",this.store);
+        this.hasError = api_caller.callApi(step, url, request_json, "GET",this.store);
 	}
-
 }

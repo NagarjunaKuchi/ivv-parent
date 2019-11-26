@@ -35,4 +35,5 @@ public class Policy {
 	private String auth_policy_del_dtimes;
 	private List<AuthPolicies> authPolicies;
 	private List<AllowedKycAttributes> allowedKycAttributes;
+	private String result;
 }

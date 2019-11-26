@@ -28,5 +28,7 @@ public class Misp {
 	private String is_deleted;
 	private String del_dtimes;
 	private String licenseKey_is_deleted;
-	private String licenseKey_del_dtimes;	
+	private String licenseKey_del_dtimes;
+	private String status_code;
+	private String result;
 }

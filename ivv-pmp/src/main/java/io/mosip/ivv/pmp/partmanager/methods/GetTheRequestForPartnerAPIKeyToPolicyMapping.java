@@ -1,4 +1,4 @@
-package io.mosip.ivv.pmp.partner.methods;
+package io.mosip.ivv.pmp.partmanager.methods;
 
 import org.json.simple.JSONObject;
 
@@ -6,6 +6,8 @@ import io.mosip.ivv.core.base.ApiCaller;
 import io.mosip.ivv.core.base.Step;
 import io.mosip.ivv.core.base.StepInterface;
 import io.mosip.ivv.core.structures.Partner;
+import io.mosip.ivv.pmp.partner.methods.PartnerAPIKeyReqIDGetter;
+import io.mosip.ivv.pmp.partner.methods.PartnerGetter;
 
 public class GetTheRequestForPartnerAPIKeyToPolicyMapping extends Step implements StepInterface{
 	
@@ -42,6 +44,6 @@ public class GetTheRequestForPartnerAPIKeyToPolicyMapping extends Step implement
         
         String url = "/pmpartners" + "/PartnerAPIKeyRequests/" + partner.getAPIKeyReqID();
         ApiCaller api_caller = new ApiCaller();
-        this.hasError = api_caller.callApi_Manager(step, url, request_json, "GET",this.store);
+        this.hasError = api_caller.callApi(step, url, request_json, "GET",this.store);
 	}
 }
