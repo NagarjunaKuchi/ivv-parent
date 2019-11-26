@@ -1,0 +1,15 @@
+ps_no,tag,Result,subModule,scenarioName,old_name,name,address,contact_no,email_id,is_active,user_id,policyGroupName,status,newPolicyGroupName
+1,,Success,PARTNER,PARTNER_S1,,Voda_Tele,Bangalore,9902344554,nagarjuna@gmail.com,,,Telecom
+2,,Success,PARTNER,PARTNER_S2,,Voda_Tele,Bangalore,9902344554,nagarjuna@gmail.com,,,Telecom
+3,,Success,PARTNER,PARTNER_S3,,Voda_Tele,Bangalore_India,9902344554,india@gmail.com,,,Telecom
+4,,Success,PARTNER,PARTNER_S4,,Voda_Tele,Bangalore,9902344554,nagarjuna@gmail.com,,,Telecom
+5,,Success,PARTNER,PARTNER_S5,,Voda_Tele,Bangalore,9902344554,nagarjuna@gmail.com,,,Telecom
+6,,Success,PARTNER,PARTNER_S7,,Voda_Tele,Bangalore,9902344554,nagarjuna@gmail.com,,,Telecom,Approved
+7,,Success,PARTNER,PARTNER_S6,,Voda_Tele,Bangalore,9902344554,nagarjuna@gmail.com,,,Telecom
+8,,Success,PARTNER,PARTNER_S8,,Voda_Tele,Bangalore,9902344554,nagarjuna@gmail.com,,,Telecom,Approved,Banking
+9,,Success,PARTNER,PARTNER_S9,,Voda_Tele,Bangalore,9902344554,nagarjuna@gmail.com,Active,,Telecom
+10,,Success,PARTNER,PARTNER_S10,,Voda_Tele,Bangalore,9902344554,nagarjuna@gmail.com,Active,,Telecom
+11,,Success,PARTNER,PARTNER_S11,,Voda_Tele,Bangalore,9902344554,nagarjuna@gmail.com,Active,,Telecom
+12,,Success,PARTNER,PARTNER_S12,,Voda_Tele,Bangalore,9902344554,nagarjuna@gmail.com,Active,,Telecom
+13,,Success,PARTNER,PARTNER_S13,,Voda_Tele,Bangalore,9902344554,nagarjuna@gmail.com,Active,,Telecom
+14,,Success,PARTNER,PARTNER_S14,,Voda_Tele,Bangalore,9902344554,nagarjuna@gmail.com,Active,,Telecom
