@@ -21,7 +21,7 @@ public class UpdateMispStatus extends Step implements StepInterface{
 		
 		
 		MispGetter mispIdGetter = new MispGetter();
-		this.misp.setId(mispIdGetter.GetMisp(misp.getOldName()).getId());
+		this.misp.setId(mispIdGetter.GetMisp(misp.getName()).getId());
 		if(misp.getId() == null){
 			logSevere("misp with name " + misp.getOldName() + "not found for scenario : " + 
 					misp.getScenarioName());
