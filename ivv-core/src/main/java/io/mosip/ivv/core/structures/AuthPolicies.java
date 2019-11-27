@@ -1,13 +1,15 @@
 package io.mosip.ivv.core.structures;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class AuthPolicies {
 	
-	private String authType;
-	private String authSubType;
-	private String mandatory;
+	public String authType;
+	public String authSubType;
+	public String mandatory;
+	
+	public AuthPolicies(String authType,String authSubType,String mandatory){
+	 
+	 this.authSubType = authSubType;
+	 this.authType = authType;
+	 this.mandatory = mandatory;
+	}
 }

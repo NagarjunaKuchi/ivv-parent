@@ -20,6 +20,7 @@ public class Parser implements ParserInterface {
     private String GLOBALS_SHEET = "";
     private String PMP_SCENARIO_SHEET = "";
     private String PMP_MISP_SHEET = "";
+    private String PMP_POLICY_SHEET = "";
     private String PMP_PARTNER_SHEET ="";
     
     Properties properties = null;
@@ -30,6 +31,7 @@ public class Parser implements ParserInterface {
         this.GLOBALS_SHEET = USER_DIR+properties.getProperty("ivv.sheet.globals");
         this.PMP_SCENARIO_SHEET = USER_DIR+properties.getProperty("ivv.pmp.sheet.scenario");
         this.PMP_MISP_SHEET = USER_DIR+properties.getProperty("ivv.pmp.sheet.misp");
+        this.PMP_POLICY_SHEET = USER_DIR+properties.getProperty("ivv.pmp.sheet.policy");
         this.PMP_PARTNER_SHEET = USER_DIR+properties.getProperty("ivv.pmp.sheet.partner");
     }
     public ArrayList<Scenario> getScenarios(){
@@ -110,7 +112,7 @@ public class Parser implements ParserInterface {
             HashMap<String, String> data_map = oMapper.convertValue(obj, HashMap.class);
             configs_map.put(data_map.get("key"), data_map.get("value"));
         }
-        System.out.println("total config entries parsed: "+configs_map.size());
+        System.out.println("total config entries parsed: " + configs_map.size());
         return configs_map;
     }
 
@@ -132,6 +134,10 @@ public class Parser implements ParserInterface {
     
     private ArrayList<?> fetchPmpMisps(){
     	return Utils.csvToList(PMP_MISP_SHEET);
+    }
+    
+    private ArrayList<?> fetchPmpPolicy(){
+    	return Utils.csvToList(PMP_POLICY_SHEET);
     }
 
     private ArrayList<Scenario.Step> formatSteps(HashMap<String, String> data_map){
@@ -188,7 +194,7 @@ public class Parser implements ParserInterface {
 	}
 	
 	public ArrayList<Policy> getPolicies() {
-		ArrayList<?> data = fetchPmpMisps();
+		ArrayList<?> data = fetchPmpPolicy();
 		ArrayList<Policy> policy_list = new ArrayList<Policy>();
         ObjectMapper oMapper = new ObjectMapper();
         Iterator<?> iter = data.iterator();
@@ -198,15 +204,10 @@ public class Parser implements ParserInterface {
             System.out.println("Parsing policy: "+ data_map.get("scenarioName"));
             Policy policy = new Policy();
             
-//            policy.setSubModule(data_map.get("subModule"));
-//            policy.setScenarioName(data_map.get("scenarioName"));
-//            policy.setAddress(data_map.get("address"));
-//            policy.setContact_no(data_map.get("contact_no"));
-//            policy.setEmail_id(data_map.get("email_id"));
-//            policy.setName(data_map.get("name"));
-//            policy.setIs_active(data_map.get("is_active"));
-//            policy.setOldName(data_map.get("old_name"));
-//            policy.setLicenseKey_is_active(data_map.get("license_key_status"));
+            policy.setSubModule(data_map.get("subModule"));
+            policy.setScenarioName(data_map.get("scenarioName"));
+            policy.setPolicyName(data_map.get("name"));
+            policy.setPolicyDesc(data_map.get("descr"));
             policy_list.add(policy);
         }
         

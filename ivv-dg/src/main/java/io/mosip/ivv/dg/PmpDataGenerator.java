@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import io.mosip.ivv.core.structures.Misp;
 import io.mosip.ivv.core.structures.Partner;
+import io.mosip.ivv.core.structures.Policy;
 import io.mosip.ivv.core.structures.Scenario;
 import io.mosip.ivv.dg.exceptions.MispNotFoundException;
 import io.mosip.ivv.parser.Parser;
@@ -17,6 +18,7 @@ public class PmpDataGenerator implements DataGeneratorInterface {
     private HashMap<String, String> globals = null;
     private HashMap<String, String> configs = null;
     private ArrayList<Misp> misps = null;
+    private ArrayList<Policy> policies = null;
     private ArrayList<Partner> partners = null;
     
     public PmpDataGenerator(String USER_DIR, String CONFIG_FILE) {
@@ -52,18 +54,33 @@ public class PmpDataGenerator implements DataGeneratorInterface {
         this.configs = parser.getConfigs();
         ArrayList<Scenario> scenarios = parser.getPmpScenarios();
         this.misps = parser.getMisps();
+        this.policies = parser.getPolicies();
         this.partners = parser.getPartners();
         this.generatedScenarios = new ArrayList<Scenario>();
         for (Scenario scenario : scenarios){
         	scenario.setPmpData(new Scenario.PmpData());
         	scenario.getPmpData().setMisp(addMispData(scenario,this.misps));
+        	scenario.getPmpData().setPolicy(addPolicyData(scenario,this.policies));
         	scenario.getPmpData().setPartner(addPartnerData(scenario,this.partners));
         	this.generatedScenarios.add(scenario);
         }
-
+        
 	}
 
 	
+	private Policy addPolicyData(Scenario scenario, ArrayList<Policy> policies) {
+		for (Policy policy : policies) {
+			if (scenario.getSubModule() != null && !scenario.getSubModule().isEmpty()
+					&& scenario.getScenarioName() != null && !scenario.getScenarioName().isEmpty()
+					&& policy.getScenarioName() != null && policy.getScenarioName().equals(scenario.getScenarioName())
+					&& policy.getSubModule() != null && policy.getSubModule().equals(scenario.getSubModule())) {
+				return policy;
+			}
+		}
+
+		return new Policy();
+	}
+
 	private Misp addMispData(Scenario scenario, ArrayList<Misp> misps) {		
 		for(Misp mi : misps){
 			if(scenario.getSubModule() != null && !scenario.getSubModule().isEmpty()

@@ -5,7 +5,7 @@ import static io.restassured.RestAssured.given;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
+
 import org.json.simple.JSONObject;
 
 import com.jayway.jsonpath.JsonPath;
@@ -13,7 +13,6 @@ import com.jayway.jsonpath.PathNotFoundException;
 import com.jayway.jsonpath.ReadContext;
 
 import io.mosip.ivv.core.structures.CallRecord;
-import io.mosip.ivv.core.structures.Partner;
 import io.mosip.ivv.core.structures.Scenario;
 import io.mosip.ivv.core.structures.Store;
 import io.mosip.ivv.core.utils.ErrorMiddleware;
@@ -53,185 +52,6 @@ public class ApiCaller extends Step {
          ReadContext ctx = JsonPath.parse(api_response.getBody().asString());
          return ctx;        
 	}
-	
-//	public Boolean callApi_Manager(Scenario.Step step, String api_url, JSONObject api_input,
-//			String httpMethod, Store store){
-//		
-//		extentInstance = step.getE();		
-//		RestAssured.baseURI = "http://localhost:8888";//System.getProperty("ivv.mosip.host");
-//        
-//		Response api_response = null;
-//		
-//		if(httpMethod.toUpperCase().equals("POST")){
-//			api_response = given().relaxedHTTPSValidation()
-//	                .contentType(ContentType.JSON)
-//	               // .cookie("Authorization", this.store.getHttpData().getCookie())
-//	                .body(api_input)
-//	                .post(api_url);
-//		}
-//		
-//		if(httpMethod.toUpperCase().equals("GET")){
-//			api_response = given().relaxedHTTPSValidation()
-//	                .contentType(ContentType.JSON)
-//	               // .cookie("Authorization", this.store.getHttpData().getCookie())
-//	                .body(api_input)
-//	                .get(api_url);
-//		}
-//
-//		if(httpMethod.toUpperCase().equals("PUT")){
-//			api_response = given().relaxedHTTPSValidation()
-//	                .contentType(ContentType.JSON)
-//	               // .cookie("Authorization", this.store.getHttpData().getCookie())
-//	                .body(api_input)
-//	                .put(api_url);
-//		}
-//		
-//		
-//
-//        this.callRecord = new CallRecord("http://localhost:8888" + api_url, "POST", api_input.toString(), api_response);
-//        //Helpers.logCallRecord(this.callRecord);
-//        ReadContext ctx = JsonPath.parse(api_response.getBody().asString());
-//        
-//        if (api_response.getStatusCode() != 200) {
-//        	logSevere("API HTTP status return as " + api_response.getStatusCode() + api_response.prettyPrint());
-//        	
-//            this.hasError = true;
-//            return true;
-//        }
-//        
-//        if (step.getErrors() != null && step.getErrors().size() > 0) {
-//            ErrorMiddleware.MiddlewareResponse emr = new ErrorMiddleware(step, api_response, extentInstance).inject();
-//            if (!emr.getStatus()) {
-//                this.hasError = true;
-//                return true;
-//            }
-//        }
-//        else{
-//        	if (step.getAsserts().size() > 0) {
-//                for (Scenario.Step.Assert pr_assert : step.getAsserts()) {
-//                    switch (pr_assert.type) {
-//                        case DONT:
-//                            break;
-//                        case API_CALL:
-//                        	break;
-//                        case DEFAULT:
-//                            try {
-//                                if(ctx.read("$['response']") == null){                                	
-//                                    logInfo("Assert failed: Expected response not empty but found empty");
-//                                    this.hasError=true;
-//                                    return true;
-//                                }
-//                            } catch (PathNotFoundException e) {
-//                                e.printStackTrace();
-//                                logSevere("Assert failed: Expected response not empty but found empty");
-//                                this.hasError=true;
-//                                return true;
-//                            }
-//                            responseMatch(store.getScenarioPmpData().getPartner());
-//                            logInfo("Assert [DEFAULT] passed");
-//                            break;	                            
-//                        
-//                        default:
-//                            logWarning("API HTTP status return as " + pr_assert.type);
-//	                            break;
-//	                    }
-//	                }
-//	            }
-//	        }
-//        
-//		return false;
-//	}
-//	
-	
-//	public Boolean callApi_PartnerService(Scenario.Step step, String api_url, JSONObject api_input,
-//			String httpMethod, Store store){
-//		
-//		extentInstance = step.getE();		
-//		RestAssured.baseURI = "http://localhost:8888";//System.getProperty("ivv.mosip.host");
-//        
-//		Response api_response = null;
-//		
-//		if(httpMethod.toUpperCase().equals("POST")){
-//			api_response = given().relaxedHTTPSValidation()
-//	                .contentType(ContentType.JSON)
-//	               // .cookie("Authorization", this.store.getHttpData().getCookie())
-//	                .body(api_input)
-//	                .post(api_url);
-//		}
-//		
-//		if(httpMethod.toUpperCase().equals("GET")){
-//			api_response = given().relaxedHTTPSValidation()
-//	                .contentType(ContentType.JSON)
-//	               // .cookie("Authorization", this.store.getHttpData().getCookie())
-//	                .body(api_input)
-//	                .get(api_url);
-//		}
-//
-//		if(httpMethod.toUpperCase().equals("PUT")){
-//			api_response = given().relaxedHTTPSValidation()
-//	                .contentType(ContentType.JSON)
-//	               // .cookie("Authorization", this.store.getHttpData().getCookie())
-//	                .body(api_input)
-//	                .put(api_url);
-//		}
-//		
-//		
-//
-//        this.callRecord = new CallRecord("http://localhost:8888" + api_url, "POST", api_input.toString(), api_response);
-//        //Helpers.logCallRecord(this.callRecord);
-//        ReadContext ctx = JsonPath.parse(api_response.getBody().asString());
-//        
-//        if (api_response.getStatusCode() != 200) {
-//        	logSevere("API HTTP status return as " + api_response.getStatusCode() + api_response.prettyPrint());
-//        	
-//            this.hasError = true;
-//            return true;
-//        }
-//        
-//        if (step.getErrors() != null && step.getErrors().size() > 0) {
-//            ErrorMiddleware.MiddlewareResponse emr = new ErrorMiddleware(step, api_response, extentInstance).inject();
-//            if (!emr.getStatus()) {
-//                this.hasError = true;
-//                return true;
-//            }
-//        }
-//        else{
-//        	if (step.getAsserts().size() > 0) {
-//                for (Scenario.Step.Assert pr_assert : step.getAsserts()) {
-//                    switch (pr_assert.type) {
-//                        case DONT:
-//                            break;
-//                        case API_CALL:
-//                        	break;
-//                        case DEFAULT:
-//                            try {
-//                                if(ctx.read("$['response']") == null){                                	
-//                                    logInfo("Assert failed: Expected response not empty but found empty");
-//                                    this.hasError=true;
-//                                    return true;
-//                                }
-//                            } catch (PathNotFoundException e) {
-//                                e.printStackTrace();
-//                                logSevere("Assert failed: Expected response not empty but found empty");
-//                                this.hasError=true;
-//                                return true;
-//                            }
-//                            
-//                            responseMatch(store.getScenarioPmpData().getPartner());
-//                            logInfo("Assert [DEFAULT] passed");
-//                            break;	                            
-//                        
-//                        default:
-//                            logWarning("API HTTP status return as " + pr_assert.type);
-//	                            break;
-//	                    }
-//	                }
-//	            }
-//	        }
-//        
-//		return false;
-//	}
-	
 	
 	public Boolean callApi(Scenario.Step step, String api_url, JSONObject api_input,
 			String httpMethod, Store store){

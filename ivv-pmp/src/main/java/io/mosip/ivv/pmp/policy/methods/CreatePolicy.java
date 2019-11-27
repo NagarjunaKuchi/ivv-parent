@@ -29,11 +29,9 @@ public class CreatePolicy extends Step implements StepInterface {
         
         api_input.put("request", request_json);
         
-        String url = "/pmp/policies/";       
+        String url = "/pmp/policies";       
         
         ApiCaller api_caller = new ApiCaller();
-        this.hasError = api_caller.callApi(step, url, api_input, "POST",this.store);
-		
+        this.hasError = api_caller.callApi(step, url, api_input, "POST",this.store);		
 	}
-
 }
